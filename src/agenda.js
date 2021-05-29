@@ -22,6 +22,7 @@ var items = [
   {
    _id            :guid(),
     name          : 'Meeting , dev staff!',
+      salle : '1',
     startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0),
     endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0),
     classes       : 'color-1 color-4'
@@ -29,6 +30,7 @@ var items = [
   {
    _id            :guid(),
     name          : 'Working lunch , Holly',
+      salle : '2',
     startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 11, 0),
     endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 13, 0),
     classes       : 'color-2'
@@ -36,6 +38,7 @@ var items = [
   {
    _id            :guid(),
     name          : 'Conference , plaza',
+      salle : '3',
     startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 11 , 0),
     endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 14 ,30),
     classes       : 'color-4'
@@ -43,6 +46,7 @@ var items = [
   {
    _id            :'event-4',
     name          : 'Customers issues review',
+      salle : '4',
     startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate()+2, 10, 0),
     endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate()+2, 15, 0),
     classes       : 'color-3'
@@ -51,6 +55,7 @@ var items = [
   {
     _id           :'event-5',
     name          : 'Group activity',
+      salle : '5',
     startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate()+3, 10, 0),
     endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate()+3, 16, 30),
     classes       : 'color-4'
@@ -58,6 +63,7 @@ var items = [
   {
     _id           :'event-6',
     name          : 'Fun Day !',
+      salle : '6',
     startDateTime : new Date(now.getFullYear(), now.getMonth(), now.getDate()+7, 9, 14),
     endDateTime   : new Date(now.getFullYear(), now.getMonth(), now.getDate()+7, 17),
     classes       : 'color-3'

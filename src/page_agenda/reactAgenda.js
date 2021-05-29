@@ -19,6 +19,7 @@ var ctrlKey = false;
 
 var DEFAULT_ITEM = {
   name: '',
+  salle: '',
   classes: '',
   cellRefs: []
 };

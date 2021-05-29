@@ -42,8 +42,13 @@ export default class ReactAgendaCtrl extends Component {
     if(this.refs.eventName){
         this.refs.eventName.focus()
     }
+    if(this.refs.eventSalle){
+      this.refs.eventSalle.focus()
+    }
 
   }.bind(this), 50);
+
+
 
   if (!this.props.selectedCells) {
     let start = now
@@ -56,20 +61,20 @@ export default class ReactAgendaCtrl extends Component {
     let start = moment(this.props.selectedCells[0].startDateTime);
     let endT = moment(this.props.selectedCells[0].endDateTime);
 
-    return this.setState({editMode: true, name: this.props.selectedCells[0].name, classes: this.props.selectedCells[0].classes, startDateTime: start, endDateTime: endT});
+    return this.setState({editMode: true, name: this.props.selectedCells[0].name,salle: this.props.selectedCells[0].salle, classes: this.props.selectedCells[0].classes, startDateTime: start, endDateTime: endT});
 
   }
 
   if (this.props.selectedCells && this.props.selectedCells.length === 1) {
     let start = moment(getFirst(this.props.selectedCells));
     let endT = moment(getLast(this.props.selectedCells)).add(15, 'Minutes');
-    return this.setState({editMode: false, name: '', startDateTime: start, endDateTime: endT});
+    return this.setState({editMode: false, name: '', salle: '', startDateTime: start, endDateTime: endT});
   }
 
   if (this.props.selectedCells && this.props.selectedCells.length > 0) {
     let start = moment(getFirst(this.props.selectedCells));
     let endT = moment(getLast(this.props.selectedCells)) || now;
-    this.setState({editMode: false, name: '', startDateTime: start, endDateTime: endT});
+    this.setState({editMode: false, name: '', salle:'', startDateTime: start, endDateTime: endT});
   }
 
 }
@@ -84,6 +89,11 @@ export default class ReactAgendaCtrl extends Component {
 
     this.setState(data);
   }
+
+  handleChangeSalle(event) {
+    this.setState({salle: event.target.value});
+  }
+
 
   handleDateChange(ev, date) {
     var endD = moment(this.state.endDateTime)
@@ -113,6 +123,7 @@ dispatchEvent(obj) {
       var lasobj = {
         _id: guid(),
         name: obj.name,
+        salle: obj.salle,
         startDateTime: new Date(start),
         endDateTime: new Date(endT),
         classes: obj.classes
@@ -140,6 +151,7 @@ addEvent(e) {
     if (Object.values(obj).length > 1) {
       var newObj = {
         name: this.state.name,
+        salle: this.state.salle,
         startDateTime: new Date(this.state.startDateTime),
         endDateTime: new Date(this.state.endDateTime),
         classes: this.state.classes,
@@ -154,6 +166,7 @@ addEvent(e) {
 
   var newObj = {
     name: this.state.name,
+    salle: this.state.salle,
     startDateTime: new Date(this.state.startDateTime),
     endDateTime: new Date(this.state.endDateTime),
     classes: this.state.classes
@@ -168,6 +181,7 @@ updateEvent(e) {
     var newObj = {
       _id: this.props.selectedCells[0]._id,
       name: this.state.name,
+      salle: this.state.salle,
       startDateTime: new Date(this.state.startDateTime),
       endDateTime: new Date(this.state.endDateTime),
       classes: this.state.classes
@@ -221,6 +235,11 @@ render() {
               <label>Event name</label>
               <input type="text" name="name" autoFocus ref="eventName" className="agendCtrls-event-input" value={this.state.name} onChange={this.handleChange.bind(this)} placeholder="Event Name"/>
             </div>
+            <div className="agendCtrls-label-inline">
+              <label>salle</label>
+              <input type="text" name="salle" autoFocus ref="eventName" className="agendCtrls-event-input" value={this.state.salle} onChange={this.handleChangeSalle.bind(this)} placeholder="Salle"/>
+            </div>
+
             <div className="agendCtrls-label-inline ">
               <label>Color</label>
               <div className="agendCtrls-radio-wrapper">
@@ -254,6 +273,10 @@ render() {
             <input type="text" ref="eventName" autoFocus name="name" className="agendCtrls-event-input" value={this.state.name} onChange={this.handleChange.bind(this)} placeholder="Event Name"/>
           </div>
           <div className="agendCtrls-label-inline">
+            <label>salle</label>
+            <input type="text" name="salle" autoFocus ref="eventName" className="agendCtrls-event-input" value={this.state.salle} onChange={this.handleChangeSalle.bind(this)} placeholder="Salle"/>
+          </div>
+          <div className="agendCtrls-label-inline">
             <label>Color</label>
             <div className="agendCtrls-radio-wrapper">
               {colors}</div>
@@ -272,6 +295,10 @@ render() {
 
         <input type="submit" value="Save"/>
       </form>
+      <div>
+        <p>{this.state.name}</p>
+        <p>{this.state.salle}</p>
+      </div>
     </div>
   );
 }
